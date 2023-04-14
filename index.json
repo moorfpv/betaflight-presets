@@ -3008,7 +3008,7 @@
     },
     {
       "fullPath": "presets/4.3/tune/moorfpv_fyuz_race_5in.txt",
-      "hash": "ea18ba0e2e28943265fdb5d6fe689eadc54bc8471ce0e6afb3a22377daa0de4b",
+      "hash": "13449bae562fe67c7819736a6403d568a6cf908032a68573e087d97ee8d9f41d",
       "title": "moorFPV - Tune Fyuz Race 6S 5\" - sub300",
       "firmware_version": [
         "4.3"
@@ -3030,7 +3030,7 @@
     },
     {
       "fullPath": "presets/4.3/tune/moorfpv_n8mare_race_5in.txt",
-      "hash": "c9f50bacc4c0eeb1877ca7ed3ab6db0959c35cde5d95e524508e7664c4b3e673",
+      "hash": "6a6fe9cb3200631d7c059ff940a680a8faf2fbb33719e6bd4acfcd0dba59e6da",
       "title": "moorFPV - Tune N8mare Race 6S 5\"",
       "firmware_version": [
         "4.3"
