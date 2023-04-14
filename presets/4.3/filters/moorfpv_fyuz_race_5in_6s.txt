@@ -1,0 +1,65 @@
+#$ TITLE: moorFPV - Filter Fyuz 715.70 Race 6S 5" HQ5130 - sub300
+#$ FIRMWARE_VERSION: 4.3
+#$ CATEGORY: FILTERS
+#$ STATUS: EXPERIMENTAL
+#$ KEYWORDS: filter, filters, race, 6S, 5 inch, 5", kruzzr, sub300fpv, fyuz, sub300
+#$ AUTHOR: moorfpv (kruzzr)
+
+#$ INCLUDE_WARNING: misc/warnings/en/rpm_filters.txt
+#$ INCLUDE: presets/4.3/filters/defaults.txt
+
+set gyro_hardware_lpf = NORMAL
+
+set simplified_gyro_filter = OFF
+set simplified_dterm_filter = OFF
+
+# -- Gyro lowpass filters --
+
+# --- lpf1 is ON !!! ---
+set gyro_lpf1_type = PT1
+set gyro_lpf1_dyn_expo = 7
+set gyro_lpf1_static_hz = 35
+set gyro_lpf1_dyn_min_hz = 35
+set gyro_lpf1_dyn_max_hz = 650
+
+# --- lpf2 is ON !!! ---
+set gyro_lpf2_type = PT1
+set gyro_lpf2_static_hz = 650
+
+set gyro_notch1_hz = 0
+set gyro_notch1_cutoff = 0
+
+set gyro_notch2_hz = 0
+set gyro_notch2_cutoff = 0
+
+set yaw_lowpass_hz = 100
+
+# -- Gyro Dynamic Notches --
+set dyn_notch_count = 2
+set dyn_notch_q = 500
+set dyn_notch_min_hz = 150
+set dyn_notch_max_hz = 500
+
+# -- Dterm filtering --
+set dterm_lpf1_type = PT1
+set dterm_lpf1_static_hz = 75
+set dterm_lpf1_dyn_min_hz = 75
+set dterm_lpf1_dyn_max_hz = 200
+set dterm_lpf1_dyn_expo = 8
+
+set dterm_lpf2_type = PT1
+set dterm_lpf2_static_hz = 200
+
+set dterm_notch_hz = 0
+set dterm_notch_cutoff = 0
+
+# -- RPM filtering --
+set dshot_bidir = ON
+set rpm_filter_harmonics = 3
+set rpm_filter_fade_range_hz = 100
+set rpm_filter_min_hz = 100
+
+
+#$ OPTION BEGIN (UNCHECKED): Dshot600
+    set motor_pwm_protocol = DSHOT600
+#$ OPTION END

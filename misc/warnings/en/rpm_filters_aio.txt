@@ -1,0 +1,1 @@
+This tune works ONLY with DSHOT 600 or DSHOT 300 with BLHeli_M. Using anything else is extremely unsafe.
