@@ -1,0 +1,203 @@
+#$ TITLE: moorFPV - Tune Fyuz Race 6S 5" - sub300
+#$ FIRMWARE_VERSION: 4.3
+#$ CATEGORY: TUNE
+#$ STATUS: EXPERIMENTAL
+#$ KEYWORDS: race, 6S, 5 inch, 5", kruzzr, sub300fpv, fyuz, sub300
+#$ AUTHOR: moorfpv (kruzzr)
+
+#$ PARSER: MARKED
+
+#$ DESCRIPTION:
+#$ DESCRIPTION: ## Things to note:
+#$ DESCRIPTION: - **YOU HAVE TO USE RPM FILTERING WITH THIS TUNE!** Failure to do so might result in fire 🔥
+#$ DESCRIPTION: - Regarding DShot600: if your setup has errors in the motor tab using bidirectional DShot, change to **8k/4k and DShot300**
+#$ DESCRIPTION: - To test arm the quad with props on, it should **sound clean with no grinding**. If it passes that then hover test and check motor temps.
+#$ DESCRIPTION: - **If anything is off, don't fly it!!**
+#$ DESCRIPTION: <br><br>
+#$ DESCRIPTION:
+#$ DESCRIPTION: ## RC link settings for TBS Tracer. **Mode: 250Hz**.
+#$ DESCRIPTION: ### WARNING:
+#$ DESCRIPTION: *  Make **ABSOLUTELY** SURE that the OpenTx or EdgeTx Hardware ADC Filter is un-checked.
+#$ DESCRIPTION: *  Check that you are using a compatible version of EdgeTx or OpenTx.
+#$ DESCRIPTION:
+
+#$ INCLUDE_WARNING: misc/warnings/en/rpm_filters_aio.txt
+#$ INCLUDE: presets/4.3/tune/defaults.txt
+#$ INCLUDE: presets/4.3/filters/defaults.txt
+
+
+# -- Use Profile --
+#profile 0
+#set profile_name = 5130x3
+
+# -- Misc --
+set horizon_transition = 85
+set yaw_spin_recovery = AUTO
+set thrust_linear = 0
+set throttle_boost = 5
+set small_angle = 180
+
+# -- Antigravity --
+set anti_gravity_gain = 3500
+
+# -- iTerm  --
+set iterm_relax_cutoff = 20
+
+# -- PIDsum limits --
+set iterm_limit = 400
+set pidsum_limit_yaw = 400
+
+# -- PID values --
+
+set p_pitch = 33
+set i_pitch = 60
+set d_pitch = 35
+
+set p_roll = 32
+set i_roll = 57
+set d_roll = 31
+
+set p_yaw = 32
+set i_yaw = 57
+set d_yaw = 0
+
+set d_min_pitch = 32
+set d_min_roll = 28
+set d_min_yaw = 0
+set d_max_gain = 40
+set d_max_advance = 0
+
+#set dyn_idle_min_rpm = 0
+# set dyn_idle_p_gain = 50
+
+# -- Feedforward --
+set f_pitch = 99
+set f_roll = 95
+set f_yaw = 95
+set feedforward_max_rate_limit = 90
+
+# -- Use Sliders --
+set simplified_pids_mode = RPY
+set simplified_master_multiplier = 80
+set simplified_i_gain = 100
+set simplified_d_gain = 120
+set simplified_pi_gain = 90
+set simplified_dmax_gain = 25
+set simplified_feedforward_gain = 100
+set simplified_pitch_d_gain = 100
+set simplified_pitch_pi_gain = 100
+set simplified_dterm_filter = OFF
+set simplified_dterm_filter_multiplier = 100
+
+# -- RPM filtering --
+set dshot_bidir = ON
+set rpm_filter_fade_range_hz = 100
+
+
+#$ OPTION BEGIN (CHECKED): Dshot600
+    set dshot_bidir = ON
+    set motor_pwm_protocol = DSHOT600
+#$ OPTION END
+
+#$ OPTION BEGIN (CHECKED): Filters - Fyuz 715.70 Race 5130 6S
+    #$ INCLUDE: presets/4.3/filters/moorfpv_fyuz_race_5in_6s.txt
+#$ OPTION END
+
+#$ OPTION BEGIN (UNCHECKED): RC Preset - Racing - TBS Tracer 250Hz - ADC-Filter disabled
+    feature RX_SERIAL
+    set serialrx_provider = CRSF
+    map TAER1234
+    #$ INCLUDE: presets/4.3/rc_link/generic/250hz_race.txt
+#$ OPTION END
+
+#$ OPTION BEGIN (UNCHECKED): Race OSD - PAL
+    #$ INCLUDE: presets/4.3/osd/moorfpv_race_analog_pal.txt
+#$ OPTION END
+
+#$ OPTION BEGIN (UNCHECKED): Race Rates
+    #$ INCLUDE: presets/4.3/rates/moorfpv.txt
+#$ OPTION END
+
+#$ OPTION BEGIN (UNCHECKED): Feature Setup
+    feature -RX_PPM
+    feature -INFLIGHT_ACC_CAL
+    feature -RX_SERIAL
+    feature -MOTOR_STOP
+    feature -SERVO_TILT
+    feature -SOFTSERIAL
+    feature -GPS
+    feature -RANGEFINDER
+    feature -TELEMETRY
+    feature -3D
+    feature -RX_PARALLEL_PWM
+    feature -RX_MSP
+    feature -RSSI_ADC
+    feature -LED_STRIP
+    feature -DISPLAY
+    feature -OSD
+    feature -CHANNEL_FORWARDING
+    feature -TRANSPONDER
+    feature -AIRMODE
+    feature -RX_SPI
+    feature -ESC_SENSOR
+    feature -ANTI_GRAVITY
+    feature INFLIGHT_ACC_CAL
+    feature RX_SERIAL
+    feature TELEMETRY
+    feature OSD
+    feature ANTI_GRAVITY
+#$ OPTION END
+
+#$ OPTION BEGIN (UNCHECKED): Beeper Setup
+    beeper -GYRO_CALIBRATED
+    beeper -DISARMING
+    beeper -ARMING
+    beeper -ARMING_GPS_FIX
+    beeper -GPS_STATUS
+    beeper -RX_SET
+    beeper -ACC_CALIBRATION
+    beeper -ACC_CALIBRATION_FAIL
+    beeper -READY_BEEP
+    beeper -DISARM_REPEAT
+    beeper -ARMED
+    beeper -SYSTEM_INIT
+    beeper -ON_USB
+    beeper -BLACKBOX_ERASE
+    beeper -ARMING_GPS_NO_FIX
+    beeper -CRASH_FLIP
+    beeper -CAM_CONNECTION_OPEN
+    beeper -CAM_CONNECTION_CLOSE
+    beeper -RC_SMOOTHING_INIT_FAIL
+    beeper RX_LOST
+    beeper RX_LOST_LANDING
+    beeper BAT_CRIT_LOW
+    beeper BAT_LOW
+    beeper MULTI_BEEPS
+
+    beacon -RX_SET
+    beacon RX_LOST
+#$ OPTION END
+
+#$ OPTION BEGIN (UNCHECKED): RX - CRSF
+    feature RX_SERIAL
+    set serialrx_provider = CRSF
+    map TAER1234
+#$ OPTION END
+
+#$ OPTION BEGIN (UNCHECKED): Modes - Arm, Flightmode, Turtle
+    aux 0 0 0 1025 2100 0 0
+    aux 1 1 1 1900 2100 0 0
+    aux 2 2 1 1400 1600 0 0
+    aux 3 28 1 900 1100 0 0
+    aux 4 35 3 1900 2100 0 0
+#$ OPTION END
+
+#$ OPTION BEGIN (UNCHECKED): Modes - Blackbox start/erase/erase beep
+    aux 5 26 4 1350 1650 0 0
+    aux 6 31 4 1900 2100 0 0
+    beeper BLACKBOX_ERASE
+#$ OPTION END
+
+#$ OPTION BEGIN (UNCHECKED): Blackbox - Debug Mode
+    set debug_mode = GYRO_SCALED
+#$ OPTION END
